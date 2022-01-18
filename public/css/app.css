@@ -1,0 +1,31 @@
+:root{
+    --main: #3F0071;
+    --main-light: #610094;
+    --main-lighter: #ca39ff;
+    --contrast: #150050;
+    --font: #d8d8d8;
+    --font-grey: #949494;
+    --background: #0f0e0e;
+    --black: #090909;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+    color: var(--font);
+}
+
+#app {
+    width: 100vw;
+    height: fit-content;
+    min-height: 100vh;
+    background-color: var(--background);
+}
+
+.small-text {
+    font-size: 0.8rem;
+    color: var(--font-grey);
+}
