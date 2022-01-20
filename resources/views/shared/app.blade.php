@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('/js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -31,8 +31,8 @@
             @include('shared.header')
         </header>            
         <main>
-            @yield('nav')
-            @yield('content')
+            @include('shared.nav')
+            @yield('content')            
         </main>
     </div>
 </body>

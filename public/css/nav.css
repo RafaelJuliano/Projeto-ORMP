@@ -1,0 +1,99 @@
+.side-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: var(--nav-background);
+    width: 15vw;
+    min-height: 90vh;    
+    transition: 0.15s all ease-in-out;
+}    
+
+
+/** SLIDE OUT MENU **/
+.open-menu{
+    display: none;
+}
+
+.menu-button{
+    align-self: flex-end;
+    margin: 10px;
+}
+
+.close-check:checked ~ .side-menu .close-menu{
+    display: none;
+}
+
+.close-check:checked ~ .side-menu .open-menu{
+    display: block;
+}
+
+.close-check:checked ~ .side-menu{       
+    width: 44px; 
+}
+
+
+
+/** MENU ITEMS **/
+.menu-group{   
+    width: 100%;  
+    user-select: none; 
+    font-size: 1.2rem;       
+}
+
+.menu-item-main, .menu-item-child{
+    display: flex;
+    width: 100%;
+    text-align: start;     
+    transition: 0.1s all ease;     
+}
+
+.menu-item-main a, .menu-item-child a{
+    display: flex;
+    width: 100%;
+    padding: 10px; 
+}
+
+.menu-item-main a label{
+    width: 100%;    
+}
+
+.menu-item-child span{
+    padding-left: 10px;
+    color: var(--nav-background);        
+}
+
+.menu-item-child{
+    display: none;    
+    background-color: var(--input);
+    border-bottom: 1px solid var(--nav-background);
+}
+
+/** MENU DROPDOWN **/
+.cadastro-check:checked ~ .menu-item-child{
+    display: flex;   
+}
+
+.cadastro-check:checked ~ .menu-item-child span{
+    color: var(--text-span);    
+}
+
+/** MENU ITEM HOVER **/
+
+.menu-item-main:hover{
+    background-color: var(--menu-hover);
+    color: var(--font-hover);
+}
+
+.menu-item-main:hover svg{
+    fill: var(--font-hover);
+}
+
+.menu-item-child:hover{   
+    background-color: var(--menu-hover);
+}
+
+.menu-item-child:hover svg{
+    fill: var(--font-hover);
+}
+
+
