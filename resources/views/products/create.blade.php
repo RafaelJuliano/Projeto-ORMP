@@ -5,11 +5,17 @@
 
         <nav class="body-nav">
             <a class="body-menu" href=""> <h2>Cadastrar Produto</h2> </a>
-            <a class="back-button" href="{{ url()->previous() }}">Voltar</a>            
+            <a class="back-button" href="
+                @if(url()->previous() == url()->current())
+                   {{ route('itens.index') }}
+                @else
+                    {{ url()->previous() }}
+                @endif
+            ">Voltar</a>                                                          
         </nav>
 
         @if($errors->any())
-            <div class="alert alert-danger" role="alert">
+            <div class="error alert-danger" role="alert">
                 @foreach ($errors->all() as $error)
                     {{ $error }}<br>
                 @endforeach
@@ -33,7 +39,7 @@
             <div class="form-line">
                 <div class="form-item form-small">
                     <label for="price">Valor de venda</label>
-                    <input type="number" step='0.01' name="price" id="price" pattern="(\d{3})([\.])(\d{2})">
+                    <input type="number" step='0.01' name="price" id="price" max="99999999">
                 </div>
 
                 <div class="form-item form-small">
@@ -48,7 +54,7 @@
 
                 <div class="form-item form-small">
                     <label for="quantity">Estoque inicial</label>
-                    <input type="text" name="quantity" id="quantity" placeholder="Quantidade do produto">
+                    <input type="number" name="quantity" id="quantity" max="999999999" placeholder="Quantidade do produto">
                 </div>
 
                 <div class="form-item form-small">
@@ -87,7 +93,7 @@
 
             <div class="button-container">
                 <button class="save-button" type="submit">Salvar</button>
-                <button type="button" class="cancel-button" onclick="window.location.href='{{ url()->previous() }}'">Cancelar</button>
+                <button type="button" class="cancel-button" onclick="window.location.href='@if(url()->previous() == url()->current()){{ route('itens.index') }}@else{{ url()->previous() }}@endif'">Cancelar</button>
             </div>            
         </form>
 

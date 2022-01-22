@@ -11,6 +11,13 @@
             <a class="add-button" href="{{ route('itens.create') }}">Adicionar Produto</a>
         </nav>
 
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            
+        @endif
+
         <form class="search-container" method="GET" action="{{ route('itens.index', 'search') }}">
             <input type="text" name="search" placeholder="Pesquisar produto...">
             <button type="submit">
