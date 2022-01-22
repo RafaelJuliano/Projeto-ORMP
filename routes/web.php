@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\products\BrandController;
 use \App\Http\Controllers\products\CategoryController;
 use \App\Http\Controllers\products\ProductController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,9 @@ Route::prefix('/cadastros')->group(function () {
     });
     
 });
+
+Route::post('/test', function (Request $request) {
+    $data = $request->all();
+    return view('test', compact('data'));
+})->name('test');
 

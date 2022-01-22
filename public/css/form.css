@@ -1,0 +1,178 @@
+.create-form{
+    width: 100%;
+    height: 100%;    
+    padding: 20px;  
+}
+.form-line{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.form-item{    
+    display: flex;
+    flex-direction: column;
+    font-size: 00.9rem;
+    margin: 10px;
+}
+
+.form-small{
+    width: 15%;
+}
+
+.form-medium{
+    width: calc(30% + 20px);
+}
+
+.form-large{
+    width: calc(60% + 60px);
+}
+
+
+input, select{    
+    min-height: 30px;
+    background-color: var(--input);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 0.8rem;
+}
+
+textarea{
+    height: 20vh;
+    background-color: var(--input);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 0.8rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-selection-itens{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-height: 30px;
+    overflow-y: hidden;
+    background-color: var(--input);
+    border-radius: 5px; 
+}
+
+.form-selection-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+    width: 100%;
+    height: 30px;
+    background-color: var(--input);
+    border: none; 
+    user-select: none; 
+    padding: 5px;
+    font-size: 0.8rem;
+}
+
+.form-selection-item label{
+    width: 100%;    
+}
+
+.select-svg{
+    fill: var(--font);
+    margin-right: 5px;
+    margin-left: auto;
+}
+
+.form-selection-box:checked ~ .form-selection-itens{
+    max-height: 20vh;
+    overflow-y: auto;
+}
+
+.form-selection-item label::before {
+  content: "\2610";  
+  width: 1.3em;
+  text-align: center;
+  display: inline-block;
+}
+.form-selection-item input:checked ~ label::before {
+  content: "\2611";
+}
+
+.button-container{
+    display: flex;
+    height: 30px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;    
+    margin: 10px;
+    padding: 0;
+}
+
+.save-button, .cancel-button{
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 10px;  
+    min-width: 8%;  
+}
+
+.save-button{
+    background-color: var(--submit);
+}
+
+.cancel-button{
+    background-color: var(--cancel);
+}
+
+.table-footer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.paginate-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;    
+}
+
+.paginate-info{     
+    align-self: flex-start;
+    font-size: 0.8;
+    color: var(--font-span);
+}
+
+
+.disabled{
+    pointer-events: none;
+    color: var(--font-span);
+    user-select: none;
+}
+
+.paginate-button, .paginate-current{
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 5px;           
+}
+
+.paginate-button{
+    background-color: var(--input);
+}
+
+.paginate-current{
+    background-color: var(--submit);
+}

@@ -24,6 +24,9 @@
     <link href="{{ asset('./css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/header.css') }}" rel="stylesheet">
     <link href="{{ asset('css/nav.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/body.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/autofill.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

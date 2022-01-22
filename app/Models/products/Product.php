@@ -18,6 +18,7 @@ class Product extends Model
         'description',
         'price',
         'quantity',
+        'brand_id',
     ];
 
     public function brand()
@@ -29,4 +30,5 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class, 'products_nn_categories');
     }
+
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\products;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Models\products\Product;
+use \App\Models\products\Category;
+use \App\Models\products\Brand;
 
 class ProductController extends Controller
 {
@@ -19,7 +21,8 @@ class ProductController extends Controller
 
         $products = Product::where('name', 'like', "%{$search}%")
             ->orWhere('id', 'like', "%{$search}%")
-            ->paginate(15);
+            ->orWhere('reference', 'like', "%{$search}%")
+            ->paginate(20);
 
         return view('products.index', compact('products'));
     }
@@ -32,7 +35,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('products.create', compact('categories', 'brands'));
     }
 
     /**
@@ -45,25 +50,30 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|max:130',
+            'reference' => 'max:10',
             'description' => 'max:255',
             'price' => 'required|numeric',
-            'quantity' => 'required|numeric',
-            'category_id' => 'required|numeric',
-            'brand_id' => 'required|numeric'            
+            'quantity' => 'required|numeric',           
+                        
         ]);
 
-        $product = new Product();
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->quantity = $request->quantity;       
-        $product->brand_id = $request->brand_id;
+        // $product = new Product();
+        // $product->name = $request->name;
+        // $product->reference = $request->reference;
+        // $product->description = $request->description;
+        // $product->price = $request->price;
+        // $product->quantity = $request->quantity;       
+        // $product->brand_id = $request->brand_id;
 
-        $product = $product->save();
+        $data = $request->all();
+        $product = Product::create($data);
         $product = Product::find($product->id);
-        $product->categories()->attach($request->category_id);
+        
+        if(isset($data['category_id'])){
+            $product->categories()->sync($data['category_id']);
+        }
 
-        return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
+        return redirect()->route('itens.index')->with('success', 'Produto criado com sucesso!');
     }
 
     /**

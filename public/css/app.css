@@ -11,6 +11,7 @@
     --app-background: var(--main-1);
     --header-background: var(--main-2);
     --nav-background: var(--main-2);
+    --body-background: var(--main-2);
     --font: var(--main-7);
     --font-span: var(--main-6);
     --title: var(--main-5);
@@ -25,6 +26,8 @@
     --submit: var(--main-5);
     --cancel: var(--main-3);
     --edit: var(--main-4);
+    --table-header: var(--main-1);
+    --table-background: var(--main-3);
 }
 
 * {
@@ -32,7 +35,7 @@
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: var(--font);
 }
 
@@ -42,8 +45,10 @@ main{
 }
 
 #app {
+    display: flex;
+    flex-direction: column;
     max-width: 100vw;
-    height: fit-content;
+    
     min-height: 100vh;
     background-color: var(--app-background);
 }
@@ -70,6 +75,14 @@ ul{
 
 label, a{
     cursor: pointer;
+}
+
+.contrast{
+    color: var(--contrast);
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
 }
 
 /** TOll TIP **/
