@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="form-item form-small">
-                    <label for="quantity">Estoque inicial</label>
+                    <label for="quantity">Ajustar estoque</label>
                     <input type="number" name="quantity" id="quantity" max="999999999" value="{{ $product->quantity }}">
                 </div>
 

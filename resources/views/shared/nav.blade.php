@@ -1,4 +1,4 @@
-<input class="close-check" type='checkbox' id='close-menu' hidden />
+<input class="close-check" type='checkbox' id='close-menu' hidden checked/>
 
 <nav class="side-menu">    
     <label class="open-menu menu-button" for="close-menu">
