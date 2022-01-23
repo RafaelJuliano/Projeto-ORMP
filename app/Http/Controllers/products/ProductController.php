@@ -97,7 +97,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('products.edit', compact('product'));
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        return view('products.edit', compact('product', 'categories', 'brands'));
     }
 
     /**
@@ -109,13 +112,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+       $request->validate([
             'name' => 'required|max:130',
+            'reference' => 'max:10',
             'description' => 'max:255',
             'price' => 'required|numeric',
-            'quantity' => 'required|numeric',
-            'category_id' => 'required|numeric',
-            'brand_id' => 'required|numeric'            
+            'quantity' => 'required|numeric',   
+                        
         ]);
 
         $product = Product::find($id);
@@ -125,11 +128,10 @@ class ProductController extends Controller
         $product->quantity = $request->quantity;       
         $product->brand_id = $request->brand_id;
 
-        $product = $product->save();
-        $product = Product::find($product->id);
+        $product->save();        
         $product->categories()->sync($request->category_id);
 
-        return redirect()->route('products.index')->with('success', 'Produto atualizado com sucesso!');
+        return redirect()->route('itens.show', $id)->with('success', 'Produto atualizado com sucesso!');
     }
 
     /**

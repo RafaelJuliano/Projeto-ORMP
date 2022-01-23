@@ -30,6 +30,7 @@
     --edit: var(--main-4);
     --table-header: var(--main-1);
     --table-background: var(--main-3);
+    --link: var(--main-5);
 }
 
 * {
@@ -103,10 +104,11 @@ input:focus, textarea:focus, select:focus{
     left: calc(var(--mouse-x, 0) * 100% + 10px);     
 }
 
-.tooltip-item:hover ~ .tooltip{
+.tooltip-item:hover + .tooltip{
     display: block;
     opacity: 1;
     transition: 0.15s all ease-in-out;
+    pointer-events: visiblePainted;
 }
 
 /** alert */
@@ -152,3 +154,4 @@ input:focus, textarea:focus, select:focus{
         opacity: 0;
     }
 }
+
