@@ -6,8 +6,8 @@
         <nav class="body-nav">
             <a class="body-menu" href=""> <h2>Produtos</h2> </a>
             <span class="contrast">|</span>
-            <a class="body-menu" href="">Marcas</a>
-            <a class="body-menu" href="">Categorias</a>
+            <a class="body-menu" href="{{ route('marcas.index') }}">Marcas</a>
+            <a class="body-menu" href="{{ route('categorias.index') }}">Categorias</a>
             <a class="add-button" href="{{ route('itens.create') }}">Adicionar Produto</a>
         </nav>
 
@@ -62,9 +62,13 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M14.078 7.061l2.861 2.862-10.799 10.798-3.584.723.724-3.585 10.798-10.798zm0-2.829l-12.64 12.64-1.438 7.128 7.127-1.438 12.642-12.64-5.691-5.69zm7.105 4.277l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/></svg>
                                 </a>                                
                                 <!-- Delete buton -->
-                                <a class="actions" href="{{ route('itens.destroy', $product->id) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd"><path d="M5.662 23l-5.369-5.365c-.195-.195-.293-.45-.293-.707 0-.256.098-.512.293-.707l14.929-14.928c.195-.194.451-.293.707-.293.255 0 .512.099.707.293l7.071 7.073c.196.195.293.451.293.708 0 .256-.097.511-.293.707l-11.216 11.219h5.514v2h-12.343zm3.657-2l-5.486-5.486-1.419 1.414 4.076 4.072h2.829zm.456-11.429l-4.528 4.528 5.658 5.659 4.527-4.53-5.657-5.657z"/></svg>
-                                </a>                                
+                                <form action="{{ route('itens.destroy', $product->id) }}" method="POST" class="method-form">
+                                    @method('DELETE')
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="actions" onclick="return confirm('Deseja remover o produto {{ $product->name }}?')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd"><path d="M5.662 23l-5.369-5.365c-.195-.195-.293-.45-.293-.707 0-.256.098-.512.293-.707l14.929-14.928c.195-.194.451-.293.707-.293.255 0 .512.099.707.293l7.071 7.073c.196.195.293.451.293.708 0 .256-.097.511-.293.707l-11.216 11.219h5.514v2h-12.343zm3.657-2l-5.486-5.486-1.419 1.414 4.076 4.072h2.829zm.456-11.429l-4.528 4.528 5.658 5.659 4.527-4.53-5.657-5.657z"/></svg>
+                                    </button> 
+                                </form>                               
                             </div>                            
                         </td>
                     </tr>

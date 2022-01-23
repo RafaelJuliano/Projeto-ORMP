@@ -38,6 +38,11 @@
     background-color: var(--cancel);
 }
 
+button.actions, .method-form{
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
 /** SEARCH BAR **/
 .search-container{
     display: flex;
@@ -147,6 +152,14 @@ tr:hover{
 
 .td-price{
     width: 10%;
+}
+
+.td-link{   
+    cursor: pointer;
+}
+
+.td-link a{
+    color: var(--link);
 }
 
 .td-actions{

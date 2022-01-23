@@ -4,6 +4,7 @@ namespace App\Http\Controllers\products;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \App\Models\products\Category;
 
 class CategoryController extends Controller
 {
@@ -12,13 +13,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $search = $request->input('search');
 
         $categories = Category::where('name', 'like', "%{$search}%")
-            ->orWhere('id', 'like', "%{$search}%")
-            ->paginate(15);
+            ->orWhere('id', 'like', "%{$search}%")            
+            ->paginate(20);
         
         return view('products.categories.index', compact('categories'));
     }
@@ -49,7 +50,7 @@ class CategoryController extends Controller
         $category->name = $request->name;        
         $category->save();
 
-        return redirect()->route('categories.index')->with('success', 'Categoria cadastrada com sucesso!');
+        return redirect()->route('categorias.index')->with('success', 'Categoria cadastrada com sucesso!');
     }
 
     /**
@@ -58,9 +59,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $search = $request->input('search');
+
+        $category = Category::find($id);
+        $products = $category->products()
+        ->where('name', 'like', "%{$search}%") 
+        ->orwhere('reference', 'like', "%{$search}%")             
+        ->where('category_id', $id)                
+        ->paginate(20);   
+
+        return view('products.categories.show', compact('category', 'products'));
     }
 
     /**
@@ -92,7 +102,7 @@ class CategoryController extends Controller
         $category->name = $request->name;        
         $category->save();
 
-        return redirect()->route('categories.index')->with('success', 'Categoria atualizada com sucesso!');
+        return redirect()->route('categorias.index')->with('success', 'Categoria atualizada com sucesso!');
     }
 
     /**
@@ -105,11 +115,11 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         if($category->products->count() > 0){
-            return redirect()->route('categories.index')->with('error', 'Categoria não pode ser excluída pois possui produtos vinculados!');
+            return redirect()->route('categorias.index')->with('error', 'Categoria não pode ser excluída pois possui produtos vinculados!');
         }
         
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Categoria excluída com sucesso!');
+        return redirect()->route('categorias.index')->with('success', 'Categoria excluída com sucesso!');
     }
 }

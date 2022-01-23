@@ -13,7 +13,7 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {        
         $search = $request->input('search');
 
@@ -50,7 +50,7 @@ class BrandController extends Controller
         $brand->name = $request->name;        
         $brand->save();
 
-        return redirect()->route('brands.index')->with('success', 'Marca cadastrada com sucesso!');
+        return redirect()->route('marcas.index')->with('success', 'Marca cadastrada com sucesso!');
     }
 
     /**
@@ -59,9 +59,18 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        
+        $search = $request->input('search');
+
+        $brand = Brand::find($id);
+        $products = $brand->products()
+        ->where('name', 'like', "%{$search}%") 
+        ->orwhere('reference', 'like', "%{$search}%")             
+        ->where('brand_id', $id)                
+        ->paginate(20);   
+
+        return view('products.brands.show', compact('brand', 'products'));
     }
 
     /**
@@ -93,7 +102,7 @@ class BrandController extends Controller
         $brand->name = $request->name;        
         $brand->save();
 
-        return redirect()->route('brands.index')->with('success', 'Marca atualizada com sucesso!');
+        return redirect()->route('marcas.index')->with('success', 'Marca atualizada com sucesso!');
     }
 
     /**
@@ -107,11 +116,11 @@ class BrandController extends Controller
         $brand = Brand::find($id);
 
         if ($brand->products->count() > 0) {
-            return redirect()->route('brands.index')->with('error', 'Não é possível excluir marca com produtos!');
+            return redirect()->route('marcas.index')->with('error', 'Não é possível excluir a marca pois existem produtos relacionados!');
         }
         
         $brand->delete();
 
-        return redirect()->route('brands.index')->with('success', 'Marca excluída com sucesso!');
+        return redirect()->route('marcas.index')->with('success', 'Marca excluída com sucesso!');
     }
 }

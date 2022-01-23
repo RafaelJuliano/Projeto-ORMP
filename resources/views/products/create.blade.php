@@ -29,7 +29,7 @@
 
                 <div class="form-item form-large">
                     <label for="name">Nome do Produto</label>
-                    <input type="text" name="name" id="name" placeholder="Nome do Produto">
+                    <input type="text" name="name" id="name">
                 </div>
                                 
 
@@ -39,7 +39,7 @@
             <div class="form-line">
                 <div class="form-item form-small">
                     <label for="price">Valor de venda</label>
-                    <input type="number" step='0.01' name="price" id="price" max="99999999">
+                    <input type="number" step='0.01' name="price" id="price" max="99999999" placeholder="10,50">
                 </div>
 
                 <div class="form-item form-small">
@@ -54,12 +54,12 @@
 
                 <div class="form-item form-small">
                     <label for="quantity">Estoque inicial</label>
-                    <input type="number" name="quantity" id="quantity" max="999999999" placeholder="Quantidade do produto">
+                    <input type="number" name="quantity" id="quantity" max="999999999" placeholder="10">
                 </div>
 
                 <div class="form-item form-small">
                     <label for="reference">Código do produto</label>
-                    <input type="text" name="reference" id="reference" placeholder="Código do produto">
+                    <input type="text" name="reference" id="reference" placeholder="Ex. CD0001">
                 </div>
                 
             </div>
@@ -67,7 +67,7 @@
             <div class="form-line">
                 <div class="form-item form-large">
                     <label for="description">Descrição do produto</label>
-                    <textarea type="text" name="description" id="description" placeholder="Descrição do produto"></textarea>
+                    <textarea type="text" name="description" id="description" placeholder="Detalhes do produto"></textarea>
                 </div>
             </div>
 
