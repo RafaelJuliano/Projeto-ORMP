@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\products\BrandController;
 use \App\Http\Controllers\products\CategoryController;
 use \App\Http\Controllers\products\ProductController;
+use \App\Http\Controllers\customers\CustomerController;
 use Illuminate\Http\Request;
 
 /*
@@ -22,12 +23,15 @@ Route::get('/', function () {
 });
 
 Route::prefix('/cadastros')->group(function () {
+
     Route::prefix('/produtos')->group(function () {
         Route::resource('marcas', BrandController::class);
         Route::resource('categorias', CategoryController::class);
         Route::resource('itens', ProductController::class);
-    });
-    
+    });      
+
+    Route::resource('clientes', CustomerController::class);
+
 });
 
 Route::post('/test', function (Request $request) {
