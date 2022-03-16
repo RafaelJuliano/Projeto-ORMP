@@ -4,7 +4,8 @@
     <section class="body">
 
         <nav class="body-nav">
-            <a class="body-menu" href=""> <h2>Clientes</h2> </a>            
+            <a class="body-menu" href=""> <h2>Clientes</h2> </a>
+            <a class="add-button" href="{{ route('clientes.create') }}">Adicionar Clientes</a>            
         </nav>
 
         @if (session('success'))

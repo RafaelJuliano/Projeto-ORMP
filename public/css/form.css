@@ -21,6 +21,10 @@
     margin: 10px;
 }
 
+.form-smaller{
+    width: calc(7.5% - 10px);
+}
+
 .form-small{
     width: 15%;
 }

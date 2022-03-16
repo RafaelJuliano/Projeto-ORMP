@@ -15,14 +15,16 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('cpf_cnpj', 14)->unique();
+            $table->string('cpf_cnpj', 18)->unique();
             $table->string('rg_ie')->nullable();
             $table->string('name');
             $table->enum('gender', ['M', 'F', 'B']);
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('cellphone')->nullable();
             $table->string('address')->nullable();
             $table->string('number')->default('S/N');
+            $table->string('neighborhood')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zip')->nullable();

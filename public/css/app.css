@@ -151,6 +151,10 @@ input:focus, textarea:focus, select:focus{
     animation: cssAnimation 0.5s ease-in 5s forwards 
 }
 
+select{
+    cursor: pointer;
+}
+
 @keyframes cssAnimation {
     to {
         top: -100px;        
