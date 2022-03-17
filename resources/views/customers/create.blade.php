@@ -133,7 +133,7 @@
 
                 <div class="form-item form-small">
                     <label for="city">Cidade</label>
-                    <select type="text" name="city" id="city" onclick="searchCities()">
+                    <select type="text" name="city" id="city" onfocus="searchCities()">
                     </select>    
                 </div>
 
