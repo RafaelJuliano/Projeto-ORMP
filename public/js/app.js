@@ -36,7 +36,6 @@ function validateCNPJ(){
 }
 
 function validatePhone(type){
-    console.log(type);
     var phone = document.getElementById(type).value;
     var phoneValido1 = /^(([\(][0-9]{2}[\)][ ][0-9]{4}[\-][0-9]{4}))$/;
     var phoneValido2 = /^(([\(][0-9]{2}[\)][ ][0-9]{5}[\-][0-9]{4}))$/;
@@ -95,22 +94,6 @@ function changeType(){
         rg.children[1].name = 'rg_ie';
         ie.children[1].name = 'trash';
     }
-
-
-    // document.querySelectorAll("#cpf").forEach(function(item){
-    //     if(type == "PF"){
-    //         item.style.display = "flex";            
-    //     } else if (type == "PJ"){
-    //         item.style.display = "none";            
-    //     }
-    // });
-    // document.querySelectorAll("#cnpj").forEach(function(item){
-    //     if(type == "PJ"){
-    //         item.style.display = "flex";           
-    //     } else if (type == "PF"){
-    //         item.style.display = "none";           
-    //     }
-    // });    
 }
 
 function searchUf(){
@@ -119,7 +102,7 @@ function searchUf(){
     .then(response => response.json())
     .then(data => {
         var select = document.getElementById("state");
-        select.innerHTML = "";
+        select.innerHTML = "<option value=''>Selecione</option>";
         data.forEach(element => {
             var option = document.createElement("option");
             option.text = element.nome;
@@ -131,12 +114,13 @@ function searchUf(){
 
 function searchCities(){
     var uf = document.getElementById("state").value;
+    if(uf == ""){uf = "RO"};
     var url = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/"+uf+"/municipios";
     fetch(url)
     .then(response => response.json())
     .then(data => {
         var select = document.getElementById("city");
-        select.innerHTML = "";
+        select.innerHTML = "<option value=''>Selecione</option>";
         data.forEach(element => {
             var option = document.createElement("option");
             option.text = element.nome;
@@ -146,8 +130,18 @@ function searchCities(){
     });
 }
 
+function validateCEP(){
+    var cep = document.getElementById('zip').value;
+    var cepValido = /^(([0-9]{2}[\.][0-9]{3}[\-][0-9]{3}))$/;    
+    if (cepValido.test(cep) == false){ 
+        cep = cep.replace(/[^\d]+/g,'');       
+        document.getElementById('zip').value = cep.replace(/(\d{2})(\d{3})(\d{3})/, "$1.$2-$3");
+    }
+}
+
 function getCEP(){
     var cep = document.getElementById("zip").value;
+    cep = cep.replace(/[^\d]+/g,'');  
     if (cep.length >= 8){
         var url = "https://viacep.com.br/ws/"+cep+"/json/";
         fetch(url)
@@ -155,9 +149,15 @@ function getCEP(){
         .then(data => {          
             if (data.erro != true){         
                 document.getElementById("address").value = data.logradouro;
-                document.getElementById("neighborhood").value = data.bairro;
-                document.getElementById("city").innerHTML = "<option value='"+data.localidade+"' selected>"+data.localidade+"</option>";
-                document.getElementById("state").innerHTML = "<option value='"+data.uf+"' selected>"+data.uf+"</option>";
+                document.getElementById("neighborhood").value = data.bairro;                
+                var states = document.getElementById("state").options;
+                for(var i = 0; i < states.length; i++){
+                    if(states[i].value == data.uf){
+                        states[i].selected = true;
+                        break;
+                    }
+                }
+                document.getElementById("city").innerHTML = "<option value='"+data.localidade+"' selected>"+data.localidade+"</option>";                
             }       
         });
     }   

@@ -33,7 +33,7 @@
 
                 <div class="form-item form-large">
                     <label for="name">Nome</label>
-                    <input type="text" name="name" id="name" placeholder="João da Silva">
+                    <input type="text" name="name" id="name">
                 </div>  
                 
             </div>  
@@ -104,7 +104,7 @@
 
                 <div class="form-item form-small">
                     <label for="zip">CEP</label>
-                    <input type="text" name="zip" id="zip" onblur="getCEP()" onkeyup="getCEP()">                    
+                    <input type="text" name="zip" id="zip" maxlength="10" onblur="getCEP(); validateCEP()" onkeyup="getCEP(); validateCEP()">                    
                 </div>
 
                 <div class="form-item form-medium">
@@ -125,15 +125,15 @@
                     <input type="text" name="neighborhood" id="neighborhood">                    
                 </div>
 
-                <div class="form-item form-small">
+                <div class="form-item form-small" >
                     <label for="state">Estado</label>
-                    <select type="text" name="state" id="state" onclick="searchCities()" onfocus="searchUf()">
+                    <select type="text" name="state" id="state" onchange="searchCities()">
                     </select>
                 </div>
 
                 <div class="form-item form-small">
                     <label for="city">Cidade</label>
-                    <select type="text" name="city" id="city" onfocus="searchCities()">
+                    <select type="text" name="city" id="city" onclick="searchCities()">
                     </select>    
                 </div>
 
@@ -153,5 +153,12 @@
         </form>
 
     </section>
+
+    <script>
+        window.onload = function(){
+            searchUf();
+            searchCities();
+        };
+    </script>
 
 @endsection
