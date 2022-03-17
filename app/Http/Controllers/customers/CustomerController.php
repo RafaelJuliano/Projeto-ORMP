@@ -108,7 +108,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required|max:130',
-            'cpf_cnpj' => 'required|max:14',
+            'cpf_cnpj' => 'required|max:18',
             'rg_ie' => 'max:14',
             'email' => 'max:255',
             'phone' => 'max:14',

@@ -61,20 +61,56 @@ function changeType(){
 
     var type = document.getElementById("PForPJ").value;  
 
-    document.querySelectorAll("#cpf").forEach(function(item){
-        if(type == "PF"){
-            item.style.display = "flex";
-        } else if (type == "PJ"){
-            item.style.display = "none";
-        }
-    });
-    document.querySelectorAll("#cnpj").forEach(function(item){
-        if(type == "PJ"){
-            item.style.display = "flex";
-        } else if (type == "PF"){
-            item.style.display = "none";
-        }
-    });    
+    var cpf = document.getElementById("cpf");
+    var cnpj = document.getElementById("cnpj");
+    var rg = document.getElementById("rg");
+    var ie = document.getElementById("ie");
+
+    if (type == "PJ"){
+        cpf.style.display = "none";
+        cnpj.style.display = "flex";
+        rg.style.display = "none";
+        ie.style.display = "flex";
+
+        cpf.children[1].required = false;
+        cnpj.children[1].required = true;
+
+        cpf.children[1].name = 'trash';
+        cnpj.children[1].name = 'cpf_cnpj';
+
+        rg.children[1].name = 'trash';
+        ie.children[1].name = 'rg_ie';
+    }else{
+        cpf.style.display = "flex";
+        cnpj.style.display = "none";
+        rg.style.display = "flex";
+        ie.style.display = "none";
+
+        cpf.children[1].name = 'cpf_cnpj';
+        cnpj.children[1].name = 'trash';
+
+        cpf.children[1].required = true;
+        cnpj.children[1].required = false;
+
+        rg.children[1].name = 'rg_ie';
+        ie.children[1].name = 'trash';
+    }
+
+
+    // document.querySelectorAll("#cpf").forEach(function(item){
+    //     if(type == "PF"){
+    //         item.style.display = "flex";            
+    //     } else if (type == "PJ"){
+    //         item.style.display = "none";            
+    //     }
+    // });
+    // document.querySelectorAll("#cnpj").forEach(function(item){
+    //     if(type == "PJ"){
+    //         item.style.display = "flex";           
+    //     } else if (type == "PF"){
+    //         item.style.display = "none";           
+    //     }
+    // });    
 }
 
 function searchUf(){

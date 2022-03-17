@@ -50,20 +50,20 @@
 
                 <div class="form-item form-small" id="cpf">
                     <label for="cpf_cnpj">CPF</label>
-                    <input type="text" name="cpf_cnpj" id="cpf_cnpj" maxlength="14" onkeyup="validateCPF()" onblur="validateCPF()">
+                    <input type="text" name="cpf_cnpj" id="cpf_cnpj" maxlength="14" onkeyup="validateCPF()" onblur="validateCPF()" >
                 </div>
 
                 <div class="form-item form-small" id="cnpj" style="display: none">
                     <label for="cpf_cnpj">CNPJ</label>
-                    <input type="text" name="cpf_cnpj" id="cpf_cnpj" maxlength="18" onkeyup="validateCNPJ()" onblur="validateCNPJ()">
+                    <input type="text" name="" id="cpf_cnpj" maxlength="18" onkeyup="validateCNPJ()" onblur="validateCNPJ()" >
                 </div>
 
-                <div class="form-item form-small" id="cpf">
+                <div class="form-item form-small" id="rg">
                     <label for="rg_ie">RG</label>
                     <input type="text" name="rg_ie" id="rg_ie" maxlength="14">
                 </div>
 
-                <div class="form-item form-small" id="cnpj" style="display: none">
+                <div class="form-item form-small" id="ie" style="display: none">
                     <label for="rg_ie">Inscrição Estadual</label>
                     <input type="text" name="rg_ie" id="rg_ie" maxlength="14">
                 </div>
