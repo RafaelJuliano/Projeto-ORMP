@@ -112,6 +112,7 @@ function searchUf(){
     });
 }
 
+
 function searchCities(){
     var uf = document.getElementById("state").value;
     if(uf == ""){uf = "RO"};
@@ -161,6 +162,38 @@ function getCEP(){
             }       
         });
     }   
+}
+
+function addContact(){
+    var addContact = document.getElementById("add-new-contact");    
+    addContact.addEventListener("click", function(){
+        var newContact = document.createElement("div"); 
+        newContact.setAttribute("class", "contactsCount"); 
+        var contactsCount = document.querySelectorAll(".contactsCount").length;     
+        newContact.innerHTML = `
+                        <div class="form-line">
+                            <h5>Contato</h5>
+                        </div>
+                        <div class="form-line">
+                            <input type="number" name=contact[0][id] hidden>
+                            <div class="form-item form-large">
+                                <label for="contact[${contactsCount}][name]">Nome</label>
+                                <input type="text" name="contact[${contactsCount}][name]">
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item form-medium">
+                                <label for="contact[${contactsCount}][email]">E-mal</label>
+                                <input type="email" name="contact[${contactsCount}][email]">
+                            </div>
+                            <div class="form-item form-small">
+                                <label for="contact[${contactsCount}][phone]">telefone</label>
+                                <input type="text" name="contact[${contactsCount}][phone]" id=contactphone${contactsCount} onkeyup="validatePhone('contactphone${contactsCount}')" onblur="validatePhone('contactphone${contactsCount}')">
+                            </div>
+                        </div> 
+                        `;
+        document.getElementById("contacts-container").append(newContact);
+    });
 }
 
 

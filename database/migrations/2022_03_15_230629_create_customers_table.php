@@ -23,7 +23,7 @@ class CreateCustomersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('cellphone')->nullable();
             $table->string('address')->nullable();
-            $table->string('number')->default('S/N');
+            $table->string('number')->default('S/N')->nullable();
             $table->string('neighborhood')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();

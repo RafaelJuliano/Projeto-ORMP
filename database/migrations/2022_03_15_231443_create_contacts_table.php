@@ -19,7 +19,7 @@ class CreateContactsTable extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-             $table->foreignIdFor(Customer::class)->nullable();  
+            $table->foreignIdFor(Customer::class)->nullable();  
             $table->timestamps();
         });
 

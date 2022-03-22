@@ -138,6 +138,11 @@ input::-webkit-inner-spin-button {
     background-color: var(--cancel);
 }
 
+.add-element-button{
+    cursor: pointer;
+    margin: 15px 0 15px 0;
+}
+
 .table-footer{
     width: 100%;
     display: flex;

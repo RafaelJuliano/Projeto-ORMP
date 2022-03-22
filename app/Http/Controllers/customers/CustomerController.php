@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\customers\Contact;
 use App\Models\customers\Customer;
+use Illuminate\Validation\Rule;
+
 
 class CustomerController extends Controller
 {
@@ -46,7 +48,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required|max:130',
-            'cpf_cnpj' => 'required|max:14',
+            'cpf_cnpj' => Rule::unique('customers', 'cpf_cnpj'),
             'rg_ie' => 'max:14',
             'email' => 'max:255',
             'phone' => 'max:15',
@@ -57,20 +59,31 @@ class CustomerController extends Controller
             'state' => 'max:2',
             'zip' => 'max:10',
             'complement' => 'max:10'
-        ]);
+        ]);    
+        
 
+        // if (isset(Customer::where('cpf_cnpj', $request->cpf_cnpj)->first()->id)) {
+        //     return redirect()->route('clientes.create')->with('error', 'CPF ou CNPJ já cadastrado!');
+        // }        
+      
         $data = $request->all();
+
         $customer = Customer::create($data);
         $customer = Customer::find($customer->id);
 
-        if(isset($data['contacts'])){
-            foreach($data['contacts'] as $contact){
-                $contact['customer_id'] = $customer->id;
-                Contact::create($contact);
-            }
+        if(isset($data['contact'])){
+            foreach($data['contact'] as $contact){ 
+                $newContact = new Contact();
+                $newContact->name = $contact['name'];
+                $newContact->email = $contact['email'];  
+                $newContact->phone = $contact['phone'];         
+                
+                $customer->contacts()->save($newContact);
+            }           
         }
 
-        return redirect()->route('customers.show', $customer->id);
+        return redirect()->route('clientes.index')->with('success', 'Cliente cadastrado com sucesso!');
+        
     }
 
     /**
@@ -82,7 +95,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::find($id);
-        return view('customers.show', compact('customer'));
+        return view('test', compact('customer'));
     }
 
     /**
@@ -119,6 +132,8 @@ class CustomerController extends Controller
             'zip' => 'max:10',
             'complement' => 'max:10'
         ]);
+
+
 
         $data = $request->all();
         $customer = Customer::find($id);

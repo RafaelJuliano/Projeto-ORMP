@@ -14,6 +14,12 @@
             ">Voltar</a>                                                          
         </nav>
 
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>            
+        @endif
+
         @if($errors->any())
             <div class="error alert-danger" role="alert">
                 @foreach ($errors->all() as $error)
@@ -146,9 +152,22 @@
 
             </div>  
 
+            <div class="form-line">
+                <h3>Contatos</h3>
+            </div> 
+
+            <div id="contacts-container">
+                
+            </div> 
+
+            <div class="form-line add-element-button" id="add-new-contact">
+                <svg width="12" height="12" viewBox="0 0 24 24" style="margin-right: 5px;" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 11v-11h1v11h11v1h-11v11h-1v-11h-11v-1h11z"/></svg>
+                <span class="small-text">Adicionar Contato</span>
+            </div>
+
             <div class="button-container">
                 <button class="save-button" type="submit">Salvar</button>
-                <button type="button" class="cancel-button" onclick="window.location.href='@if(url()->previous() == url()->current()){{ route('categorias.index') }}@else{{ url()->previous() }}@endif'">Cancelar</button>
+                <button type="button" class="cancel-button" onclick="window.location.href='@if(url()->previous() == url()->current()){{ route('clientes.index') }}@else{{ url()->previous() }}@endif'">Cancelar</button>
             </div>                            
         </form>
 
@@ -158,6 +177,7 @@
         window.onload = function(){
             searchUf();
             searchCities();
+            addContact();
         };
     </script>
 
